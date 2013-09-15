@@ -20,11 +20,11 @@
  * DEALINGS IN THE SOFTWARE.
  */
 #include "cefclient.h"
-#include "cef_popup_window.h"
 #include "cef_registry.h"
 #include "client_handler.h"
 #include "resource.h"
 #include "native_menu_model.h"
+#include "cef_popup_window.h"
 
 // Externals
 extern HINSTANCE hInst;
@@ -100,7 +100,9 @@ void cef_popup_window::InitSystemIcon()
 bool cef_popup_window::SubclassWindow(HWND wnd)
 {
     if (cef_host_window::SubclassWindow(wnd)) {
+#ifdef DARK_UI
         InitDrawingResources();
+#endif
         InitSystemIcon();
         DragAcceptFiles(TRUE);
         GetBrowser()->GetHost()->SetFocus(true);

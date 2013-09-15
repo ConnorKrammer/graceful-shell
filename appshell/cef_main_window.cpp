@@ -133,9 +133,11 @@ void cef_main_window::PostNcDestroy()
     // We get this notification after the window 
     //  has been destroyed so we need to delete ourself
     delete this;
+#ifdef DARK_UI
     // After the main window is destroyed 
     //  do final cleanup...
     DoFinalCleanup();
+#endif
 }
 
 // Helper to get the location to place the browser

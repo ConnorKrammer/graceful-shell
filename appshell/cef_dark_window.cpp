@@ -128,7 +128,6 @@ void cef_dark_window::DoFinalCleanup()
  */
 void cef_dark_window::InitDrawingResources()
 {
-#ifdef DARK_UI
     // Make sure that the window theme is set
     //  to no theme so we get the right metrics
     ::SetWindowTheme(mWnd, L"", L"");
@@ -160,7 +159,6 @@ void cef_dark_window::InitDrawingResources()
     if (mFrameOutlinePen == NULL) {
         mFrameOutlinePen = ::CreatePen(PS_SOLID, 1, CEF_COLOR_FRAME_OUTLINE);
     }
-#endif
 }
 
 /*
@@ -219,9 +217,7 @@ void cef_dark_window::LoadSysButtonImages()
 // WM_NCCREATE handler
 BOOL cef_dark_window::HandleNcCreate()
 {
-#ifdef DARK_UI
     InitDrawingResources();
-#endif
     return FALSE;
 }
 
@@ -1025,7 +1021,6 @@ BOOL cef_dark_window::HandleNcLeftButtonUp(UINT uHitTest, LPPOINT point)
 // WindowProc handles dispatching of messages and routing back to the base class or to Windows
 LRESULT cef_dark_window::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-#if defined(DARK_UI)
     switch (message) 
     {
     case WM_SETTINGCHANGE:
@@ -1097,9 +1092,9 @@ LRESULT cef_dark_window::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
         SetRedraw(FALSE); 
         break;
     }
-#endif
+
     LRESULT lr = cef_window::WindowProc(message, wParam, lParam);
-#ifdef DARK_UI    
+
     // post default message processing
     switch (message)
     {
@@ -1125,6 +1120,5 @@ LRESULT cef_dark_window::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
         UpdateNonClientArea();
         break;
     }
-#endif
     return lr;
 }
