@@ -1722,5 +1722,9 @@ void DragWindow(CefRefPtr<CefBrowser> browser) {
     SendMessage(browserHwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0);
 }
     
+void MinimizeWindow(CefRefPtr<CefBrowser> browser) {
+    HWND browserHwnd = (HWND)getMenuParent(browser);
+    ShowWindow(browserHwnd, SW_MINIMIZE);
+}
 
 

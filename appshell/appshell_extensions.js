@@ -792,13 +792,23 @@ if (!appshell.app) {
     };
 
     /**
-     * Drag the main window
+     * Drag the main window.
      *
      * @return None. This is an asynchronous call that sends all return information to the callback.
      */
     native function DragWindow();
     appshell.app.dragWindow = function () {
         DragWindow();
+    };
+
+    /**
+     * Minimize the main window.
+     *
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function MinimizeWindow();
+    appshell.app.minimizeWindow = function () {
+        MinimizeWindow();
     };
  
     // Alias the appshell object to brackets. This is temporary and should be removed.
