@@ -810,6 +810,16 @@ if (!appshell.app) {
     appshell.app.minimizeWindow = function () {
         MinimizeWindow();
     };
+
+    /**
+     * Remove the window's borders (chrome).
+     *
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function RemoveWindowChrome();
+    appshell.app.removeWindowChrome = function () {
+        RemoveWindowChrome();
+    };
  
     // Alias the appshell object to brackets. This is temporary and should be removed.
     brackets = appshell;

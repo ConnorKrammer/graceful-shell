@@ -147,4 +147,6 @@ void DragWindow(CefRefPtr<CefBrowser> browser);
 
 void MinimizeWindow(CefRefPtr<CefBrowser> browser);
 
+void RemoveWindowChrome(CefRefPtr<CefBrowser> browser);
+
 #endif

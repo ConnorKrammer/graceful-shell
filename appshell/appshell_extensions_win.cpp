@@ -1727,4 +1727,12 @@ void MinimizeWindow(CefRefPtr<CefBrowser> browser) {
     ShowWindow(browserHwnd, SW_MINIMIZE);
 }
 
+void RemoveWindowChrome(CefRefPtr<CefBrowser> browser) {
+    HWND browserHwnd = (HWND)getMenuParent(browser);
+    LONG_PTR styles = WS_VISIBLE | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+
+    SetWindowLongPtr(browserHwnd, GWL_STYLE, styles);
+    SetWindowPos(browserHwnd, NULL, 0,0,0,0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+}
+
 

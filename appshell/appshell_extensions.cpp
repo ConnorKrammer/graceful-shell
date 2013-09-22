@@ -682,6 +682,9 @@ public:
         } else if (message_name == "MinimizeWindow") {
             // Parameters: none
             MinimizeWindow(browser);
+        } else if (message_name == "RemoveWindowChrome") {
+            // Parameters: none
+            RemoveWindowChrome(browser);
         }
         else {
             fprintf(stderr, "Native function not implemented yet: %s\n", message_name.c_str());
