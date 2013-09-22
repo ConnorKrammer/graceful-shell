@@ -812,13 +812,13 @@ if (!appshell.app) {
     };
 
     /**
-     * Remove the window's borders (chrome).
+     * Remove the window's borders.
      *
      * @return None. This is an asynchronous call that sends all return information to the callback.
      */
-    native function RemoveWindowChrome();
-    appshell.app.removeWindowChrome = function () {
-        RemoveWindowChrome();
+    native function RemoveWindowBorder();
+    appshell.app.removeWindowBorder = function () {
+        RemoveWindowBorder();
     };
  
     // Alias the appshell object to brackets. This is temporary and should be removed.
