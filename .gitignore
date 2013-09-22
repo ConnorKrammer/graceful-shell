@@ -6,8 +6,8 @@ xcodebuild/*
 /npm-debug.log
 /downloads
 
-appshell.xcodeproj
-Brackets.vcxproj
+*.xcodeproj
+*.vcxproj
 appshell.sln
 libcef_dll_wrapper.vcxproj
 
