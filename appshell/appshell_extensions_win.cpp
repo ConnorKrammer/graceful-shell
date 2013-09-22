@@ -1718,21 +1718,21 @@ int32 RemoveMenuItem(CefRefPtr<CefBrowser> browser, const ExtensionString& comma
 
 void DragWindow(CefRefPtr<CefBrowser> browser) {
     ReleaseCapture();
-    HWND browserHwnd = (HWND)getMenuParent(browser);
-    SendMessage(browserHwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+    HWND hwnd = (HWND)getMenuParent(browser);
+    SendMessage(hwnd, WM_NCLBUTTONDOWN, HTCAPTION, 0);
 }
     
 void MinimizeWindow(CefRefPtr<CefBrowser> browser) {
-    HWND browserHwnd = (HWND)getMenuParent(browser);
-    ShowWindow(browserHwnd, SW_MINIMIZE);
+    HWND hwnd = (HWND)getMenuParent(browser);
+    ShowWindow(hwnd, SW_MINIMIZE);
 }
 
 void RemoveWindowChrome(CefRefPtr<CefBrowser> browser) {
-    HWND browserHwnd = (HWND)getMenuParent(browser);
+    HWND hwnd = (HWND)getMenuParent(browser);
     LONG_PTR styles = WS_VISIBLE | WS_POPUP | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
-    SetWindowLongPtr(browserHwnd, GWL_STYLE, styles);
-    SetWindowPos(browserHwnd, NULL, 0,0,0,0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+    SetWindowLongPtr(hwnd, GWL_STYLE, styles);
+    SetWindowPos(hwnd, NULL, 0,0,0,0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
 }
 
 
