@@ -685,6 +685,48 @@ public:
         } else if (message_name == "RemoveWindowBorder") {
             // Parameters: none
             RemoveWindowBorder(browser);
+        } else if (message_name == "SetWindowPosition") {
+            // Parameters:
+            //  0: int32 - callback id
+            //  1: int32 - window x position
+            //  2: int32 - window y position
+            //  3: int32 - window bottom-right corner x position
+            //  4: int32 - window bottom-right corner y position
+            //  5: bool  - should ignore x and y parameters
+            //  6: bool  - should ignore cx and cy parameters
+            if (argList->GetSize() != 7 ||
+                argList->GetType(1) != VTYPE_INT ||
+                argList->GetType(2) != VTYPE_INT ||
+                argList->GetType(3) != VTYPE_INT ||
+                argList->GetType(4) != VTYPE_INT ||
+                argList->GetType(5) != VTYPE_BOOL ||
+                argList->GetType(6) != VTYPE_BOOL) {
+                error = ERR_INVALID_PARAMS;
+            }
+          
+            if (error == NO_ERROR) {
+                int32 x         = argList->GetInt(1);
+                int32 y         = argList->GetInt(2);
+                int32 width     = argList->GetInt(3);
+                int32 height    = argList->GetInt(4);
+                bool ignoreMove = argList->GetBool(5);
+                bool ignoreSize = argList->GetBool(6);
+              
+                SetWindowPosition(browser, x, y, width, height, ignoreMove, ignoreSize);
+            }
+        } else if (message_name == "GetCursorPosition") {
+            // Parameters:
+            //  0: int32 - callback id
+            if (argList->GetSize() != 1) {
+                error = ERR_INVALID_PARAMS;
+            }
+          
+            if (error == NO_ERROR) {
+                int32 x, y;
+                GetCursorPosition(x, y);
+                responseArgs->SetInt(2, x);
+                responseArgs->SetInt(3, y);
+            }
         }
         else {
             fprintf(stderr, "Native function not implemented yet: %s\n", message_name.c_str());

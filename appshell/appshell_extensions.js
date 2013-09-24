@@ -820,6 +820,44 @@ if (!appshell.app) {
     appshell.app.removeWindowBorder = function () {
         RemoveWindowBorder();
     };
+
+    /**
+     * Move and/or resize the window.
+     *
+     * @param {int} x The x position of the window.
+     * @param {int} y The y position of the window.
+     * @param {int} width The window width.
+     * @param {int} height The window height.
+     * @param {bool} ignoreMove True to ignore the x and y parameters.
+     * @param {bool} ignoreSize True to ignore the width and height parameters.
+     * @param {function(err)} callback Asynchronous callback function. The callback gets an error code.
+     *        Possible error values:
+     *          NO_ERROR
+     *          ERR_INVALID_PARAMS
+     *
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function SetWindowPosition();
+    appshell.app.setWindowPosition = function (x, y, width, height, ignoreMove, ignoreSize, callback) {
+        ignoreMove = ignoreMove || false;
+        ignoreSize = ignoreSize || false;
+        SetWindowPosition(callback || _dummyCallback, x, y, width, height, ignoreMove, ignoreSize);
+    };
+
+    /**
+     * Get the x and y screen position of the cursor.
+     *
+     * @param {function(integer, integer, integer)} callback Asynchronous callback function.
+     *      The callback gets three arguments, error code, x position, y position.
+     *        Possible error values:
+     *          NO_ERROR
+     *          ERR_INVALID_PARAMS
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function GetCursorPosition();
+    appshell.app.getCursorPosition = function (callback) {
+        GetCursorPosition(callback);
+    }
  
     // Alias the appshell object to brackets. This is temporary and should be removed.
     brackets = appshell;

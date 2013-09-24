@@ -1735,4 +1735,19 @@ void RemoveWindowBorder(CefRefPtr<CefBrowser> browser) {
     SetWindowPos(hwnd, NULL, 0,0,0,0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER);
 }
 
+void SetWindowPosition(CefRefPtr<CefBrowser> browser, int x, int y, int width, int height, bool ignoreMove, bool ignoreSize) {
+    ReleaseCapture();
+    HWND hwnd = (HWND)getMenuParent(browser);
+    UINT flags = (ignoreMove ? SWP_NOMOVE : 0) | (ignoreSize ? SWP_NOSIZE : 0);
+    
+    SetWindowPos(hwnd, NULL, x, y, width, height, flags);
+}
+
+void GetCursorPosition(int& x, int& y) {
+    POINT position;
+    GetCursorPos(&position);
+    x = position.x;
+    y = position.y;
+}
+
 

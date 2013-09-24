@@ -149,4 +149,8 @@ void MinimizeWindow(CefRefPtr<CefBrowser> browser);
 
 void RemoveWindowBorder(CefRefPtr<CefBrowser> browser);
 
+void SetWindowPosition(CefRefPtr<CefBrowser> browser, int x, int y, int width, int height, bool ignoreMove, bool ignoreSize);
+
+void GetCursorPosition(int& x, int& y);
+
 #endif
