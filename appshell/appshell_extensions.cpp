@@ -727,6 +727,21 @@ public:
                 responseArgs->SetInt(2, x);
                 responseArgs->SetInt(3, y);
             }
+        } else if (message_name == "GetWindowPosition") {
+            // Parameters:
+            //  0: int32 - callback id
+            if (argList->GetSize() != 1) {
+                error = ERR_INVALID_PARAMS;
+            }
+          
+            if (error == NO_ERROR) {
+                int32 x, y, width, height;
+                GetWindowPosition(browser, x, y, width, height);
+                responseArgs->SetInt(2, x);
+                responseArgs->SetInt(3, y);
+                responseArgs->SetInt(4, width);
+                responseArgs->SetInt(5, height);
+            }
         }
         else {
             fprintf(stderr, "Native function not implemented yet: %s\n", message_name.c_str());

@@ -1743,6 +1743,18 @@ void SetWindowPosition(CefRefPtr<CefBrowser> browser, int x, int y, int width, i
     SetWindowPos(hwnd, NULL, x, y, width, height, flags);
 }
 
+void GetWindowPosition(CefRefPtr<CefBrowser> browser, int& x, int& y, int& width, int& height) {
+    HWND hwnd = (HWND)getMenuParent(browser);
+    RECT rect;
+    
+    GetWindowRect(hwnd, &rect);
+
+    x      = rect.left;
+    y      = rect.top;
+    width  = rect.right - x;
+    height = rect.bottom - y;
+}
+
 void GetCursorPosition(int& x, int& y) {
     POINT position;
     GetCursorPos(&position);

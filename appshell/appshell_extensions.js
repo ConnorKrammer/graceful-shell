@@ -843,6 +843,21 @@ if (!appshell.app) {
         ignoreSize = ignoreSize || false;
         SetWindowPosition(callback || _dummyCallback, x, y, width, height, ignoreMove, ignoreSize);
     };
+ 
+    /**
+     * Get the x position, y position, width, and height values of the window.
+     *
+     * @param {function(integer, integer, integer, integer, integer)} callback Asynchronous callback function.
+     *      The callback gets five arguments, error code, x position, y position, width, and height.
+     *        Possible error values:
+     *          NO_ERROR
+     *          ERR_INVALID_PARAMS
+     * @return None. This is an asynchronous call that sends all return information to the callback.
+     */
+    native function GetWindowPosition();
+    appshell.app.getWindowPosition = function (callback) {
+        GetWindowPosition(callback);
+    }
 
     /**
      * Get the x and y screen position of the cursor.
@@ -858,7 +873,7 @@ if (!appshell.app) {
     appshell.app.getCursorPosition = function (callback) {
         GetCursorPosition(callback);
     }
- 
+
     // Alias the appshell object to brackets. This is temporary and should be removed.
     brackets = appshell;
 })();
